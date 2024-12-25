@@ -18,18 +18,9 @@ const getBlogByIdSchema = z.object({
 })
 
 const updateBlogSchema = z.object({
-  params: z.object({
-    id: z.string({ required_error: 'Blog ID is required.' }),
-  }),
   body: z.object({
     title: z.string().optional(),
     content: z.string().optional(),
-  }),
-})
-
-const deleteBlogSchema = z.object({
-  params: z.object({
-    id: z.string({ required_error: 'Blog ID is required.' }),
   }),
 })
 
@@ -37,5 +28,4 @@ export const BlogValidation = {
   createBlogSchema,
   getBlogByIdSchema,
   updateBlogSchema,
-  deleteBlogSchema,
 }

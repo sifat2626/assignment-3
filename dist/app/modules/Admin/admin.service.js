@@ -16,6 +16,7 @@ exports.AdminServices = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const AppError_1 = __importDefault(require("../../errors/AppError"));
 const user_model_1 = require("../User/user.model");
+const blog_model_1 = require("../Blog/blog.model");
 const deleteUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield user_model_1.User.findByIdAndDelete(id);
     if (!user) {
@@ -32,7 +33,15 @@ const blockUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
     yield user.save();
     return user;
 });
+const deleteBlogById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const blog = yield blog_model_1.Blog.findByIdAndDelete(id);
+    if (!blog) {
+        throw new AppError_1.default(http_status_1.default.NOT_FOUND, 'Blog not found');
+    }
+    return blog;
+});
 exports.AdminServices = {
     deleteUser,
     blockUser,
+    deleteBlogById,
 };

@@ -12,10 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const AppError_1 = __importDefault(require("../errors/AppError"));
+const user_model_1 = require("../modules/User/user.model");
 const catchAsync_1 = __importDefault(require("../utils/catchAsync"));
 const auth = () => {
     return (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-        const user = req.user;
+        const user = yield user_model_1.User.findById(req.user._id);
+        if (!user) {
+            return new AppError_1.default(404, 'This user is not found !');
+        }
         if (user.isDeleted || user.isBlocked) {
             return res.status(403).json({
                 success: false,

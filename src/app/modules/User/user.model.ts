@@ -50,7 +50,7 @@ userSchema.pre('save', async function (next) {
   const user = this
 
   if (!user.isModified('password')) return next() // Only hash if password is modified
-  if (!user.password) return next() // Only hash if password is provided
+  if(!user.password) return next() // Only hash if password is provided
 
   user.password = await bcrypt.hash(
     user.password,
