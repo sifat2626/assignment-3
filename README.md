@@ -45,7 +45,7 @@ This project is the backend system for managing blogs and users with administrat
 ### Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone <https://github.com/sifat2626/assignment-3.git>
 ```
 
 ### Installation
